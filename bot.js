@@ -168,9 +168,9 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
     
 	} else if (command === `skip`) {
 
-		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
+		if (!msg.member.voiceChannel) return msg.channel.send('انت لست في روم صوتي');
 
-		if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
+		if (!serverQueue) return msg.channel.send('لا يوجد شئ يعمل ليتم التخطي');
 
 		serverQueue.connection.dispatcher.end('تم استخدم امر التخطي');
 
@@ -190,11 +190,11 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 
 	} else if (command === `vol`) {
 
-		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
+		if (!msg.member.voiceChannel) return msg.channel.send('انت لست في روم صوتي');
 
-		if (!serverQueue) return msg.channel.send('There is nothing playing.');
+		if (!serverQueue) return msg.channel.send('لا يوجد شئ يعمل');
 
-		if (!args[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}**`);
+		if (!args[1]) return msg.channel.send(`تم تغير درجة الصوت: **${serverQueue.volume}**`);
 
 		serverQueue.volume = args[1];
 
@@ -206,11 +206,11 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 
 		if (!serverQueue) return msg.channel.send('لا يوجد شئ لتشغيله');
 
-		return msg.channel.send(`🎶 Now playing: **${serverQueue.songs[0].title}**`);
+		return msg.channel.send(`🎶 تم الان تشغيل: **${serverQueue.songs[0].title}**`);
 
 	} else if (command === `queue`) {
 
-		if (!serverQueue) return msg.channel.send('There is nothing playing.');
+		if (!serverQueue) return msg.channel.send('لا يوجد شئ لتشغيله');
 
 		return msg.channel.send(`
 
@@ -238,7 +238,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 
 		}
 
-		return msg.channel.send('There is nothing playing.');
+		return msg.channel.send('لا يوجد شئ لتشغيله');
 
 	} else if (command === `resume`) {
 
@@ -315,7 +315,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 
 		} catch (error) {
 
-			console.error(`I could not join the voice channel: ${error}`);
+			console.error(`لم استطيع دخول الروم الصوتي: ${error}`);
 
 			queue.delete(msg.guild.id);
 
